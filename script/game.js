@@ -1,7 +1,6 @@
 import { Card } from "./components/Card.js";
 import { Label } from "./core/Label.js";
 import { Node } from "./core/Node.js";
-import { Sprite } from "./core/Sprite.js";
 
 
 class Game extends Node {
@@ -37,36 +36,6 @@ class Game extends Node {
     }
 
     _createCards() {
-        //sound
-        //this.playSound(this.soundId[0]);
-        // setTimeout(()=>{
-        //     this.playSound(this.soundId[0]);
-        //     setTimeout(()=>{
-        //         this.playSound(this.soundId[4]);
-        //     },2000);
-        // },2000);
-
-        //no shufferCard
-        // let cards = [];
-        // let tl = gsap.timeline();
-        // for (let index = 0; index < 20; index++) {
-        //     let card = new Card(index);
-        //     cards.push(card);
-        //     card.setValue(index % 10);
-        //     card.x = 310;
-        //     card.y = 250;
-        //     card.opacity=1;
-        //     card.sprite.zIndex=0;
-        //     this.addChild(card);
-        //     card.elm.addEventListener("click", this.onClickCard.bind(this, card));
-        //     tl.from(card, { x: 310, y: 250, opacity: 0, duration: 0.1 })
-          
-        // }
-        // this._secondCard(cards);
-        // console.log(cards);
-        // this.play.elm.style.display = "none";
-        // this._createResetGame();
-                //push shufferCard
         this.cards = [];
         let tl = gsap.timeline();
         for(let index=0; index<20; index++){
@@ -76,10 +45,8 @@ class Game extends Node {
         }
         this.shuffleCards(this.cards);
         for (let index = 0; index < 20; index++) {
-        // let col = index % 5;
-        // let row = Math.floor(index / 5);
         this.cards[index].label.text =index+1;
-  
+
         this.cards[index].y = 250;
         this.cards[index].x = 310;
         this.cards[index].sprite.zIndex=0;
