@@ -38,7 +38,7 @@ class Game extends Node {
 
     _createCards() {
         //sound
-        this.playSound(this.soundId[0]);
+        //this.playSound(this.soundId[0]);
         // setTimeout(()=>{
         //     this.playSound(this.soundId[0]);
         //     setTimeout(()=>{
