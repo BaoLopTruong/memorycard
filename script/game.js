@@ -36,6 +36,7 @@ class Game extends Node {
     }
 
     _createCards() {
+        this.playSound(this.soundId[0]);
         this.cards = [];
         let tl = gsap.timeline();
         for(let index=0; index<20; index++){
@@ -53,7 +54,7 @@ class Game extends Node {
         this.addChild(this.cards[index]);
 
         this.cards[index].elm.addEventListener("click", this.onClickCard.bind(this, this.cards[index]));
-        tl.from(this.card[index], { x: 310, y: 250, opacity: 0, duration: 0.1 })
+        tl.from(this.cards[index], { x: 310, y: 250, opacity: 0, duration: 0.1 })
         }
         console.log(this.cards);
         this._secondCard(this.cards);
@@ -86,7 +87,6 @@ class Game extends Node {
     }
 
     _createPlayGame() {
-        //this.playSound(this.soundId[0]);
         this.play = new Label();
         this.play.text = "Play Game";
         this.play.color = "red";
@@ -174,7 +174,7 @@ class Game extends Node {
             let row = Math.floor(index / 5);
             var x = col * 120 + 100;
             var y = row * 120 + 100;
-            tl.to(arrCards[index], { ease: Back.easeOut.config(6), x: x, y: y, duration: 0.3 });
+            tl.to(arrCards[index], { ease: Back.easeOut.config(6), x: x, y: y, duration: 0.25 });
         }
     }
 
