@@ -9,6 +9,7 @@ export class Card extends Node {
         this._createSprite();
         this._createCover();
         this._createLabel();
+ 
         this._opacity = 1;
     }
     get opacity(){
@@ -17,13 +18,6 @@ export class Card extends Node {
     set opacity(value){
         this._opacity = value;
         this.elm.style.opacity =  this._opacity;
-    }
-    _createSprite() {
-        this.sprite = new Sprite();
-        this.sprite.width = 100;
-        this.sprite.height = 100;
-        this.sprite.scaleX = 0;
-        this.addChild(this.sprite);
     }
     _createCover() {
         let cover = new Node();
@@ -34,12 +28,19 @@ export class Card extends Node {
         this.cover = cover;
         this.addChild(this.cover);
     }
+    _createSprite() {
+        this.sprite = new Sprite();
+        this.sprite.width = 100;
+        this.sprite.height = 100;
+        this.addChild(this.sprite);
+    }
+
     _createLabel() {
         let label = new Label();
         label.text = this.index + 1;
         label.width = 40;
         this.label = label;
-        this.addChild(label);
+        this.addChild(this.label);
     }
     setValue(value) {
         this.value = value;
@@ -56,14 +57,13 @@ export class Card extends Node {
         this.cover.elm.style.display = "block";
         this.label.elm.style.display = "block";
     }
-    flipCard() {
-        const tl = gsap.timeline({ paused: true });
+    flipOpenCard() {
+        const tl = gsap.timeline();
         tl.to(this.cover, { scaleX: 0, duration: 0.2 })
-        .to(this.label, { scaleX: 0, duration: 0.2 });
-        tl.to(this.sprite, { scaleX: 1, duration: 0.2 });
-        tl.play();
+         .to(this.label, { scaleX: 0, duration: 0.2 })
+         .to(this.sprite, { scaleX: 1, duration: 0.2 });
     }
-    flopCard() {
+    flipCloseCard() {
         const tl = gsap.timeline({ paused: true });
         tl.to(this.sprite, { scaleX: 0, duration: 0.2 });
         tl.to(this.cover, { scaleX: 1, duration: 0.2 })
@@ -73,17 +73,11 @@ export class Card extends Node {
     }
     zoomIn() {
         const tl = gsap.timeline({ paused: true });
-        tl.to(this.sprite.elm, { zIndex: 12, duration: 0.5 })
-        .to(this.sprite.elm, { zIndex: 12, duration: 0.5, scale:2 });
+        tl.to(this.sprite.elm, {  duration: 0.8 })
+        .to(this.sprite.elm, {  duration: 0.8, scale:2 });
         tl.call(() => {
             this.hide();
         })
-        tl.play();
-    }
-    firstLoad(){
-        const tl = gsap.timeline({ paused: true});
-        tl.from(this.cover.elm, {x:210, y:210,opacity:0 , duration: 0.08})
-        .from(this.sprite.elm, {x:210,y:210, zIndex:12, duration:0.08})
         tl.play();
     }
 

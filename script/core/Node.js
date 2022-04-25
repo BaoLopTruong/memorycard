@@ -8,6 +8,24 @@ export class Node {
         this.children = [];
         this._scaleX = 1;
         this._scaleY = 1;
+        this._active= true;
+        this._opacity =1;
+        this._active = "none";
+    }
+    get active(){
+        return this._active;
+    }
+    set active(value){
+        this._active = value;
+        this.elm.style.display =  this._active;
+    }
+    
+    get opacity(){
+        return this._opacity;
+    }
+    set opacity(value){
+        this._opacity = value;
+        this.elm.style.opacity =  this._opacity;
     }
 
     get scaleX(){
