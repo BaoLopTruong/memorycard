@@ -175,7 +175,6 @@ class Game extends Node {
 
     compareCard() {
         if (this.fistCard.value === this.secondCard.value) {
-
             // hide
             this.fistCard.sprite.zIndex = 2;
             this.secondCard.sprite.zIndex = 2;
@@ -225,7 +224,7 @@ class Game extends Node {
         for (let index = 0; index < 20; index++) {
             this.removeChild(this.cards[index]);
         }
-        this.removeChild(this.score)
+        this.removeChild(this.score);
         this.children = [];
     }
     resetGame() {
@@ -238,7 +237,6 @@ class Game extends Node {
     }
 
 }
-
 // create background
 let game = new Game();
 document.body.appendChild(game.elm);
